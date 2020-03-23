@@ -1,1 +1,1 @@
-﻿VisualStudioTextTransform.Tests
+﻿ErrorGeneratingOutput

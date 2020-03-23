@@ -40,11 +40,9 @@ namespace AIT.Tools.VisualStudioTextTransform
             var solutionFileName = arguments[0];
             var opts = new string[arguments.Length - 1];
             Array.Copy(arguments, 1, opts, 0, arguments.Length - 1);
-            var options = new Options();
-            Parser.Default.ParseArguments(opts, options);
-
-            return 
-                TemplateProcessor.ProcessSolution(solutionFileName, options) ? 0 : 1;
+            return Parser.Default.ParseArguments<Options>(opts).MapResult(
+                options => TemplateProcessor.ProcessSolution(solutionFileName, options) ? 0 : 1,
+                errs => -1);
         }
 
     }
